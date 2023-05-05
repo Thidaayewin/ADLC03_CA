@@ -3,7 +3,7 @@ name: building .net application
 on:
   push:
     branches:
-      - 'release/v*.*'
+      - 'release/v[1-9]+.[0-9]+'
 
 jobs:
   build_dot_net:
@@ -20,11 +20,11 @@ jobs:
 
       - name: Install Railway
         run: npm i -g @railway/cli
-      
+
       - name: deploy
         run: railway up
         env:
-          Railway_TOKEN: ${{secrets.RAILWAYTOKEN}}
+          Railway_TOKEN: ${{ secrets.RAILWAYTOKEN }}
 
       - name: Send Github Action trigger data to Slack
         id: Slack
