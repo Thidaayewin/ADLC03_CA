@@ -52,23 +52,19 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
-                      "text": "*Email:* e1112938@u.nus.edu"
-                    },
-                    {
-                      "type": "mrkdwn",
                       "text": "*Metriculation:* A0269555M"
                     },
                     {
                       "type": "mrkdwn",
                       "text": "*Repository:* \n${{ github.event.repository.html_url }}"
                     }
-                  ]
+                ]
                 },
-                {
+                            {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{secrets.DOMIN}}.up.railway.app/"
+                    "text": "${{secrets.DOMIN}}"
                   },
                   "accessory": {
                     "type": "button",
@@ -78,10 +74,9 @@ jobs:
                       "emoji": true
                     },
                     "value": "click_me_123",
-                    "url":"https://${{secrets.DOMIN}}.up.railway.app/",
                     "action_id": "button-action"
                   }
                 }
               ]
+              
             }
-         
