@@ -24,7 +24,7 @@ jobs:
       - name: deploy
         run: railway up
         env:
-          Railway_TOKEN: ${{ secrets.RAILWAYTOKEN_KEY }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAYTOKEN_KEY }}
 
       - name: Send Github Action trigger data to Slack
         id: Slack
