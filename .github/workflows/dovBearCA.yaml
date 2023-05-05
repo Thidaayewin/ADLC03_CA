@@ -63,9 +63,9 @@ jobs:
                       "type": "mrkdwn",
                       "text": "*Repository:* \n${{ github.event.repository.html_url }}"
                     }
-                ]
+                  ]
                 },
-                            {
+                {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
