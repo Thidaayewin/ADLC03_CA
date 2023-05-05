@@ -25,65 +25,69 @@ jobs:
         run: railway up
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAYTOKEN_KEY }}
-
-      - name: Send Github Action trigger data to Slack
-        id: Slack
+     
+      - name: Send custom JSON data to Slack workflow
+        id: slack
         uses: slackapi/slack-github-action@v1.23.0
-        env:
-          SLACK_WEBHOOK_URL: ${{secrets.TEST_SUBMISSION}}
-          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
         with:
           payload: |
-              {
-                "blocks": [
-                  {
-                    "type": "header",
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "DipSA 56 CI/CD Submission",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Name* Thida Aye Win"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Email:* e1112938@u.nus.edu"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Metriculation:* A0269555M"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "Repository:\n${{ github.event.repository.html_url }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "https://${{ secrets.DOMIN }}.up.railway.app/"
+                  },
+                  "accessory": {
+                    "type": "button",
                     "text": {
                       "type": "plain_text",
-                      "text": "DipSA 56 CI/CD Submission",
+                      "text": "Go",
                       "emoji": true
-                    }
-                  },
-                  {
-                    "type": "section",
-                    "fields": [
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Name:* Thida Aye Win"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Metriculation:* A0269555M"
-                      }
-                    ]
-                  },
-                    "type": "section",
-                    "fields": [
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Email:* e1112938@u.nus.edu"
-                      },
-                      {
-                        "type": "mrkdwn",
-                        "text": "*Repository:* \n${{ github.event.repository.html_url }}"
-                      }
-                    ]
-                  },
-                  {
-                    "type": "section",
-                    "text": {
-                      "type": "mrkdwn",
-                      "text": "${{secrets.DOMIN}}"
                     },
-                    "accessory": {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "text": "Go",
-                        "emoji": true
-                      },
-                      "url": "${{secrets.DOMIN}}"
-                    }
+                    "value": "click_me_123",
+                    "url": "https://${{ secrets.DOMIN }}.up.railway.app/",
+                    "action_id": "button-action"
                   }
-                ]
-              }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.TEST_SUBMISSION }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        
