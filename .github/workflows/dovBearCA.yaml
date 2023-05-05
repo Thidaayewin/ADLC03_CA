@@ -82,10 +82,8 @@ jobs:
                         "text": "Go",
                         "emoji": true
                       },
-                      "url": "${{secrets.DOMIN}}",
-                      "action_id": "button-action"
+                      "url": "${{secrets.DOMIN}}"
                     }
                   }
                 ]
-                
               }
