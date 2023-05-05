@@ -8,7 +8,7 @@ on:
 jobs:
   build_dot_net:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, '#NORUB')"
+    if: "!startsWith(github.event.head_commit.message, '#NORUN')"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -57,6 +57,10 @@ jobs:
                     },
                     {
                       "type": "mrkdwn",
+                      "text": "*Email:* e1112938@u.nus.edu"
+                    },
+                    {
+                      "type": "mrkdwn",
                       "text": "*Repository:* \n${{ github.event.repository.html_url }}"
                     }
                 ]
@@ -74,7 +78,7 @@ jobs:
                       "text": "Go",
                       "emoji": true
                     },
-                    "value": "click_me_123",
+                    "url": "${{secrets.DOMIN}}",
                     "action_id": "button-action"
                   }
                 }
