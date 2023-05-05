@@ -1,0 +1,87 @@
+name: building .net application
+
+on:
+  push:
+    branches:
+      - 'release/v*.*'
+
+jobs:
+  build_dot_net:
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '#NORUB')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Setup
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16
+
+      - name: Install Railway
+        run: npm i -g @railway/cli
+      
+      - name: deploy
+        run: railway up
+        env:
+          Railway_TOKEN: ${{secrets.RAILWAYTOKEN}}
+
+      - name: Send Github Action trigger data to Slack
+        id: Slack
+        uses: slackapi/slack-github-action@v1.23.0
+        env:
+          SLACK_WEBHOOK_URL: ${{secrets.TEST_SUBMISSION}}
+        with:
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "DipSA 56 CI/CD Submission",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Name:* Thida Aye Win"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Email:* e1112938@u.nus.edu"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Metriculation:* A0269555M"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Repository:* \n${{ github.event.repository.html_url }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{secrets.DOMIN}}.up.railway.app/"
+                  },
+                  "accessory": {
+                    "type": "button",
+                    "text": {
+                      "type": "plain_text",
+                      "text": "Go",
+                      "emoji": true
+                    },
+                    "value": "click_me_123",
+                    "url":"https://${{secrets.DOMIN}}.up.railway.app/",
+                    "action_id": "button-action"
+                  }
+                }
+              ]
+            }
+         
