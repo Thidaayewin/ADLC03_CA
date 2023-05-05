@@ -51,12 +51,7 @@ jobs:
                     {
                       "type": "mrkdwn",
                       "text": "*Email:* e1112938@u.nus.edu"
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "fields": [
+                    },
                     {
                       "type": "mrkdwn",
                       "text": "*Metriculation:* A0269555M"
