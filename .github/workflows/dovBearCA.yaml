@@ -34,54 +34,58 @@ jobs:
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
         with:
           payload: |
-            {
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "DipSA 56 CI/CD Submission",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Name:* Thida Aye Win"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Metriculation:* A0269555M"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Email:* e1112938@u.nus.edu"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Repository:* \n${{ github.event.repository.html_url }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "${{secrets.DOMIN}}"
-                  },
-                  "accessory": {
-                    "type": "button",
+              {
+                "blocks": [
+                  {
+                    "type": "header",
                     "text": {
                       "type": "plain_text",
-                      "text": "Go",
+                      "text": "DipSA 56 CI/CD Submission",
                       "emoji": true
+                    }
+                  },
+                  {
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Name:* Thida Aye Win"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Metriculation:* A0269555M"
+                      }
+                    ]
+                  },
+                    "type": "section",
+                    "fields": [
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Email:* e1112938@u.nus.edu"
+                      },
+                      {
+                        "type": "mrkdwn",
+                        "text": "*Repository:* \n${{ github.event.repository.html_url }}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "section",
+                    "text": {
+                      "type": "mrkdwn",
+                      "text": "${{secrets.DOMIN}}"
                     },
-                    "url": "${{secrets.DOMIN}}",
-                    "action_id": "button-action"
+                    "accessory": {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Go",
+                        "emoji": true
+                      },
+                      "url": "${{secrets.DOMIN}}",
+                      "action_id": "button-action"
+                    }
                   }
-                }
-              ]
-              
-            }
+                ]
+                
+              }
